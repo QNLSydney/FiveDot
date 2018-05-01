@@ -35,6 +35,7 @@ scfg = StationConfigurator(CONFIG_FILE)
 mdac = scfg.load_instrument('mdac')
 lockin = scfg.load_instrument('sr860')
 
+# Set up gate sets
 OHMICS_NUMS = (x-1 for x in (37, 48, 24, 11, 19, 7))
 GATES_NUMS = (x-1 for x in (9, 32, 34, 31, 23, 46, 47, 42, 28, 38, 36, 21, 45, 10, 
                        22, 44, 35, 30, 18, 29, 17, 5))
@@ -54,3 +55,8 @@ SHORTS = ChannelList(mdac, "Shorts_Channels", mdac.ch01.__class__)
 for i in SHORTS_NUMS:
     SHORTS.append(mdac.channels[i])
 SHORTS.lock()
+
+# Set up ramp parameters for gates
+GATES.rate(0.05) # 50mV/s ramp rate
+# Set all gates to have a 10Hz filter
+GATES.filter(2)
