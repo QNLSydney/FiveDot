@@ -1,0 +1,20 @@
+{
+    "core":{
+        "loglevel": "DEBUG",
+        "default_fmt": "data/{date}/#{counter}_{name}_{time}",
+        "register_magic": true,
+        "db_location": "C:\\Users\\Administrator\\Documents\\Experiments\\experiments.db",
+        "db_debug": false
+    },
+    "gui" :{
+        "notebook": false,
+        "plotlib": "all",
+        "pyqtmaxplots": 100,
+        "defaultcolormap": "hot"
+    },
+    "user": {
+        "scriptfolder": "C:\\Users\\Administrator\\Documents\\FiveDot",
+        "mainfolder": "C:\\Users\\Administrator\\Documents\\FiveDot",
+        "auto_reconnect_instrument": false
+    }
+}

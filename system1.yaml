@@ -1,0 +1,194 @@
+instruments:
+  # intrument name = identifier
+  # this is what is looked up by the add_instrument method of StationConfig
+
+  mdac:
+    driver: qcodes.instrument_drivers.qnl.MDAC
+    type: MDAC
+    address: ASRL5::INSTR
+    # if true any existing connection will be closed when instatiated
+    # default (if left out) is false
+    auto_reconnect: true
+
+    parameters:
+      # Set up default parameters
+        
+      # Can use first one as sort of template or basis settings
+      # and use them for other channels
+      # chXX.ramp: # &base
+      #   # new way of calling it in python: instrument.alias
+      #   alias: myalias
+      #   # label appearing on plots or monitor
+      #   label: mylabel
+      #   # software limits of values we want it to set
+      #   limits: -2.5,0.25
+      #   # rate: 0.005
+      #   monitor: true
+
+      # LEFT DOUBLE DOT, DOT 1
+      ch09.ramp:
+        alias: LW1_1
+        label: LW1_1
+        limits: -2.5,0.25
+        monitor: true
+      ch32.ramp:
+        alias: LP1_1
+        label: LP1_1
+        limits: -2.5,0.25
+        monitor: true
+      ch34.ramp:
+        alias: C1_1
+        label: C1_1
+        limits: -2.5,0.25
+        monitor: true
+      ch31.ramp:
+        alias: RP1_1
+        label: RP1_1
+        limits: -2.5,0.25
+        monitor: true
+      ch23.ramp:
+        alias: RW1_1
+        label: RW1_1
+        limits: -2.5,0.25
+        monitor: true
+      ch18.ramp:
+        alias: N1_1
+        label: N1_1
+        limits: -2.5,0.25
+        monitor: true
+      # LEFT SENSING DOT, DOT 1
+      ch29.ramp:
+        alias: LSD_T_1
+        label: LSD_T_1
+        limits: -2.5,0.25
+        monitor: true
+      ch17.ramp:
+        alias: LSD_C_1
+        label: LSD_C_1
+        limits: -2.5,0.25
+        monitor: true
+      ch05.ramp:
+        alias: LSD_B_1
+        label: LSD_B_1
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT DOUBLE DOT, DOT 1
+      ch47.ramp:
+        alias: LW2_1
+        label: LW2_1
+        limits: -2.5,0.25
+        monitor: true
+      ch42.ramp:
+        alias: LP2_1
+        label: LP2_1
+        limits: -2.5,0.25
+        monitor: true
+      ch28.ramp:
+        alias: C2_1
+        label: C2_1
+        limits: -2.5,0.25
+        monitor: true
+      ch38.ramp:
+        alias: RP2_1
+        label: RP2_1
+        limits: -2.5,0.25
+        monitor: true
+      ch36.ramp:
+        alias: RW2_1
+        label: RW2_1
+        limits: -2.5,0.25
+        monitor: true
+      ch22.ramp:
+        alias: N2_1
+        label: N2_1
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT SENSING DOT, DOT 1
+      ch10.ramp:
+        alias: RSD_T_1
+        label: RSD_T_1
+        limits: -2.5,0.25
+        monitor: true
+      ch45.ramp:
+        alias: RSD_C_1
+        label: RSD_C_1
+        limits: -2.5,0.25
+        monitor: true
+      ch21.ramp:
+        alias: RSD_B_1
+        label: RSD_B_1
+        limits: -2.5,0.25
+        monitor: true
+      # JELLYBEAN, DOT 1
+      ch30.ramp:
+        alias: JBL_1
+        label: JBL_1
+        limits: -2.5,0.25
+        monitor: true
+      ch35.ramp:
+        alias: JBC_1
+        label: JBC_1
+        limits: -2.5,0.25
+        monitor: true
+      ch44.ramp:
+        alias: JBR_1
+        label: JBR_1
+        limits: -2.5,0.25
+        monitor: true
+      ch46.ramp:
+        alias: JBB_1
+        label: JBB_1
+        limits: -2.5,0.25
+        monitor: true
+      
+      temperature:
+        label: MDAC temperature
+        monitor: true
+
+  sr860:
+    # class of the instrument
+    driver: qcodes.instrument_drivers.stanford_research.SR860
+    type: SR860
+    # visa address
+    address: TCPIP0::10.66.41.10::inst0::INSTR
+    # all following fields are optional:
+    # init:
+      # Use this to simulate an instrument if you don't have 
+      # a physical copy at hand
+      # visalib: 'lockin.yaml@sim'
+    parameters:
+      time_constant:
+        label: lockin tc
+        monitor: True
+      sensitivity:
+        label: lockin sensitivity
+        monitor: True
+      amplitude:
+        label: excitation
+        monitor: True
+    add_parameters:
+      divider_amplitude:
+        source: amplitude
+        label: lockin divider amplitude
+        scale: 2.52 # accounting for the voltage divider
+        monitor: True
+    
+    auto_reconnect: true
+
+    # # new parameters, that get created and attached to the instrument
+    # new_parameter:
+    # # ex: DC current
+    # DC:
+    #   # source specifies which getter and setter should be used
+    #   source: # e.g channel
+    #   # label and unit change these attributes of the parameter
+    #   label:
+    #   unit: #
+    #   limits:
+    #   monitor: true
+#
+#
+# Alternative way of specifying parameters:
+# parameters:
+#   ch01.v: {alias: gate1, label: cutter right}
+
