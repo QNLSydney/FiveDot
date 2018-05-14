@@ -1,6 +1,6 @@
 {
     "core":{
-        "loglevel": "DEBUG",
+        "loglevel": "INFO",
         "default_fmt": "data/{date}/#{counter}_{name}_{time}",
         "register_magic": true,
         "db_location": "C:\\Users\\Administrator\\Documents\\Experiments\\experiments.db",
@@ -14,7 +14,11 @@
     },
     "user": {
         "scriptfolder": "C:\\Users\\Administrator\\Documents\\FiveDot",
-        "mainfolder": "C:\\Users\\Administrator\\Documents\\FiveDot",
-        "auto_reconnect_instrument": false
+        "mainfolder": "C:\\Users\\Administrator\\Documents\\FiveDot"
+    },
+    "station_configurator": {
+        "enable_forced_reconnect": false,
+        "default_folder": "C:\\Users\\Administrator\\Documents\\FiveDot",
+        "default_file": "system1.yaml"
     }
 }

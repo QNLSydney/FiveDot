@@ -27,6 +27,8 @@ import qcodes_measurements as qcm
 import time
 import numpy as np
 
+from dac_params import *
+
 # Close any instruments that may already be open
 instruments = list(qc.Instrument._all_instruments.keys())
 for instrument in instruments:
@@ -40,11 +42,11 @@ sample_name = 'M08-10-16.2_0003_CHER'
 exp = load_experiment_by_name(exp_name, sample=sample_name)
 print('Experiment loaded. Last ID no:', exp.last_counter)
 
-CONFIG_FILE = 'system1.yaml'
-scfg = StationConfigurator(CONFIG_FILE)
+scfg = StationConfigurator()
 
 mdac = scfg.load_instrument('mdac')
 lockin = scfg.load_instrument('sr860')
+ithaco = scfg.load_instrument('ithaco')
 
 # Set up gate sets
 OHMICS_1_NUMS = (x-1 for x in (37, 48, 24, 11, 19, 7))
@@ -74,24 +76,3 @@ GATES = GATES_1 + GATES_2
 GATES.rate(0.05) # 50mV/s ramp rate
 # Set all gates to have a 10Hz filter
 GATES.filter(2)
-
-class CombinedVoltage(Parameter):
-    def __init__(self, name, label, *gates):
-        unit = gates[0].unit
-        self.gates = []
-        for gate in gates:
-            self.gates.append(gate._instrument)
-        
-        super().__init__(name, label=label,
-                         unit=unit,
-                         get_cmd=self.get_raw,
-                         set_cmd=self.set_raw)
-    
-    def get_raw(self):
-        return self.gates[0].voltage()
-    def set_raw(self, val):
-        for gate in self.gates:
-            gate.ramp(val)
-        for gate in self.gates:
-            while not np.isclose(val, gate.voltage(), 1e-3):
-                time.sleep(0.05)

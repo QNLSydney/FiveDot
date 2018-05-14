@@ -275,6 +275,22 @@ instruments:
       # Use this to simulate an instrument if you don't have 
       # a physical copy at hand
       # visalib: 'lockin.yaml@sim'
+    add_parameters:
+      X_current:
+        source: X
+        label: In-Phase Current
+        unit: A
+        scale: 1000000
+      Y_current:
+        source: Y
+        label: Quadrature Current
+        unit: A
+        scale: 1000000
+      R_current:
+        source: R
+        label: Magnitude
+        unit: A
+        scale: 1000000
     parameters:
       time_constant:
         label: lockin tc
@@ -290,14 +306,21 @@ instruments:
         label: DC offset
         scale: 10000
         monitor: True
-    add_parameters:
-      divider_amplitude:
-        source: amplitude
-        label: lockin divider amplitude
-        scale: 2.52 # accounting for the voltage divider
-        monitor: True
-    
     auto_reconnect: true
+  ithaco:
+    driver: qcodes.instrument_drivers.ithaco.Ithaco_1211
+    type: Ithaco_1211
+    parameters:
+      sens:
+        initial_value: 0.000001
+      invert:
+        initial_value: False
+      sens_factor:
+        initial_value: 1
+      suppression:
+        initial_value: 0.0000000001
+      risetime:
+        initial_value: 0.1
 
     # # new parameters, that get created and attached to the instrument
     # new_parameter:
