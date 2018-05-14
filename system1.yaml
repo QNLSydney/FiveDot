@@ -9,6 +9,9 @@ instruments:
     # if true any existing connection will be closed when instatiated
     # default (if left out) is false
     auto_reconnect: true
+    # disable logging, since it seems to be generating quite a lot of data
+    init: 
+        logging: false
 
     parameters:
       # Set up default parameters
@@ -140,6 +143,122 @@ instruments:
         label: JBB_1
         limits: -2.5,0.25
         monitor: true
+        
+      # LEFT DOUBLE DOT, DOT 5
+      ch49.voltage:
+        alias: LW1_5
+        label: LW1_5
+        limits: -2.5,0.25
+        monitor: true
+      ch50.voltage:
+        alias: LP1_5
+        label: LP1_5
+        limits: -2.5,0.25
+        monitor: true
+      ch51.voltage:
+        alias: C1_5
+        label: C1_5
+        limits: -2.5,0.25
+        monitor: true
+      ch52.voltage:
+        alias: RP1_5
+        label: RP1_5
+        limits: -2.5,0.25
+        monitor: true
+      ch53.voltage:
+        alias: RW1_5
+        label: RW1_5
+        limits: -2.5,0.25
+        monitor: true
+      ch54.voltage:
+        alias: N1_5
+        label: N1_5
+        limits: -2.5,0.25
+        monitor: true
+      # LEFT SENSING DOT, DOT 5
+      ch62.voltage:
+        alias: LSD_T_5
+        label: LSD_T_5
+        limits: -2.5,0.25
+        monitor: true
+      ch63.voltage:
+        alias: LSD_C_5
+        label: LSD_C_5
+        limits: -2.5,0.25
+        monitor: true
+      ch64.voltage:
+        alias: LSD_B_5
+        label: LSD_B_5
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT DOUBLE DOT, DOT 5
+      ch57.voltage:
+        alias: LW2_5
+        label: LW2_5
+        limits: -2.5,0.25
+        monitor: true
+      ch58.voltage:
+        alias: LP2_5
+        label: LP2_5
+        limits: -2.5,0.25
+        monitor: true
+      ch59.voltage:
+        alias: C2_5
+        label: C2_5
+        limits: -2.5,0.25
+        monitor: true
+      ch60.voltage:
+        alias: RP2_5
+        label: RP2_5
+        limits: -2.5,0.25
+        monitor: true
+      ch61.voltage:
+        alias: RW2_5
+        label: RW2_5
+        limits: -2.5,0.25
+        monitor: true
+      ch02.voltage:
+        alias: N2_5
+        label: N2_5
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT SENSING DOT, DOT 5
+      ch03.voltage:
+        alias: RSD_T_5
+        label: RSD_T_5
+        limits: -2.5,0.25
+        monitor: true
+      ch41.voltage:
+        alias: RSD_C_5
+        label: RSD_C_5
+        limits: -2.5,0.25
+        monitor: true
+      ch16.voltage:
+        alias: RSD_B_5
+        label: RSD_B_5
+        limits: -2.5,0.25
+        monitor: true
+      # JELLYBEAN, DOT 5
+      ch55.voltage:
+        alias: JBL_5
+        label: JBL_5
+        limits: -2.5,0.25
+        monitor: true
+      ch56.voltage:
+        alias: JBC_5
+        label: JBC_5
+        limits: -2.5,0.25
+        monitor: true
+      ch40.voltage:
+        alias: JBR_5
+        label: JBR_5
+        limits: -2.5,0.25
+        monitor: true
+      ch26.voltage:
+        alias: JBB_5
+        label: JBB_5
+        limits: -2.5,0.25
+        monitor: true
       
       temperature:
         label: MDAC temperature
@@ -165,6 +284,11 @@ instruments:
         monitor: True
       amplitude:
         label: excitation
+        scale: 10000
+        monitor: True
+      sine_outdc:
+        label: DC offset
+        scale: 10000
         monitor: True
     add_parameters:
       divider_amplitude:
