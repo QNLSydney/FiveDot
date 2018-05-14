@@ -5,6 +5,12 @@ Created on Mon Apr 30 12:21:38 2018
 @author: Administrator
 """
 
+# Log all output
+from IPython import get_ipython
+ip = get_ipython()
+ip.magic("logstop")
+ip.magic("logstart -o -t fivedot_log.py rotate")
+
 import qcodes as qc
 from qcodes import ChannelList, Parameter
 from qcodes.dataset.measurements import Measurement
