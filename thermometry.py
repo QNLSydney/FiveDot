@@ -19,6 +19,7 @@ def sweep_excitation(lockin, plungers, excitations=DEFAULT_EXCITATIONS, params=N
         lockin.amplitude(exc)
         plungers(-0.625)
         time.sleep(1)
-        run_id, win = qcm.linear1d(plungers, -0.625, -0.685, 600, 0.2, *params, append=(not new_plot))
+        run_id, win = qcm.linear1d(plungers, -0.625, -0.685, 600, 0.2, *params, 
+                                   append=(not new_plot))
         print("Excitation: {:.1e}, id: {}".format(exc, run_id))
         new_plot = False
