@@ -11,9 +11,9 @@ instruments:
     auto_reconnect: true
     # disable logging, since it seems to be generating quite a lot of data
     init: 
-        logging: false
+      logging: false
 
-    parameters:
+    add_parameters:
       # Set up default parameters
         
       # Can use first one as sort of template or basis settings
@@ -29,240 +29,293 @@ instruments:
       #   monitor: true
 
       # LEFT DOUBLE DOT, DOT 1
-      ch09.voltage:
-        alias: LW1_1
+      LW1_1:
+        source: ch09.voltage
         label: LW1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch32.voltage:
-        alias: LP1_1
+      LP1_1:
+        source: ch32.voltage
         label: LP1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch34.voltage:
-        alias: C1_1
+      C1_1:
+        source: ch34.voltage
         label: C1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch31.voltage:
-        alias: RP1_1
+      RP1_1:
+        source: ch31.voltage
         label: RP1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch23.voltage:
-        alias: RW1_1
+      RW1_1:
+        source: ch23.voltage
         label: RW1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch18.voltage:
-        alias: N1_1
+      N1_1:
+        source: ch18.voltage
         label: N1_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
       # LEFT SENSING DOT, DOT 1
-      ch29.voltage:
-        alias: LSD_T_1
+      LSD_T_1:
+        source: ch29.voltage
         label: LSD_T_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch17.voltage:
-        alias: LSD_C_1
+      LSD_C_1:
+        source: ch17.voltage
         label: LSD_C_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch05.voltage:
-        alias: LSD_B_1
+      LSD_B_1:
+        source: ch05.voltage
         label: LSD_B_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
       # RIGHT DOUBLE DOT, DOT 1
-      ch47.voltage:
-        alias: LW2_1
+      LW2_1:
+        source: ch47.voltage
         label: LW2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch42.voltage:
-        alias: LP2_1
+      LP2_1:
+        source: ch42.voltage
         label: LP2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch28.voltage:
-        alias: C2_1
+      C2_1:
+        source: ch28.voltage
         label: C2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch38.voltage:
-        alias: RP2_1
+      RP2_1:
+        source: ch38.voltage
         label: RP2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch36.voltage:
-        alias: RW2_1
+      RW2_1:
+        source: ch36.voltage
         label: RW2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch22.voltage:
-        alias: N2_1
+      N2_1:
+        source: ch22.voltage
         label: N2_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
       # RIGHT SENSING DOT, DOT 1
-      ch10.voltage:
-        alias: RSD_T_1
+      RSD_T_1:
+        source: ch10.voltage
         label: RSD_T_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch45.voltage:
-        alias: RSD_C_1
+      RSD_C_1:
+        source: ch45.voltage
         label: RSD_C_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch21.voltage:
-        alias: RSD_B_1
+      RSD_B_1:
+        source: ch21.voltage
         label: RSD_B_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
       # JELLYBEAN, DOT 1
-      ch30.voltage:
-        alias: JBL_1
+      JBL_1:
+        source: ch30.voltage
         label: JBL_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch35.voltage:
-        alias: JBC_1
+      JBC_1:
+        source: ch35.voltage
         label: JBC_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch44.voltage:
-        alias: JBR_1
+      JBR_1:
+        source: ch44.voltage
         label: JBR_1
+        unit: V
         limits: -2.5,0.25
         monitor: true
-      ch46.voltage:
-        alias: JBB_1
+      JBB_1:
+        source: ch46.voltage
         label: JBB_1
-        limits: -2.5,0.25
-        monitor: true
-        
-      # LEFT DOUBLE DOT, DOT 5
-      ch49.voltage:
-        alias: LW1_5
-        label: LW1_5
-        limits: -2.5,0.25
-        monitor: true
-      ch50.voltage:
-        alias: LP1_5
-        label: LP1_5
-        limits: -2.5,0.25
-        monitor: true
-      ch51.voltage:
-        alias: C1_5
-        label: C1_5
-        limits: -2.5,0.25
-        monitor: true
-      ch52.voltage:
-        alias: RP1_5
-        label: RP1_5
-        limits: -2.5,0.25
-        monitor: true
-      ch53.voltage:
-        alias: RW1_5
-        label: RW1_5
-        limits: -2.5,0.25
-        monitor: true
-      ch54.voltage:
-        alias: N1_5
-        label: N1_5
-        limits: -2.5,0.25
-        monitor: true
-      # LEFT SENSING DOT, DOT 5
-      ch62.voltage:
-        alias: LSD_T_5
-        label: LSD_T_5
-        limits: -2.5,0.25
-        monitor: true
-      ch63.voltage:
-        alias: LSD_C_5
-        label: LSD_C_5
-        limits: -2.5,0.25
-        monitor: true
-      ch64.voltage:
-        alias: LSD_B_5
-        label: LSD_B_5
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT DOUBLE DOT, DOT 5
-      ch57.voltage:
-        alias: LW2_5
-        label: LW2_5
-        limits: -2.5,0.25
-        monitor: true
-      ch58.voltage:
-        alias: LP2_5
-        label: LP2_5
-        limits: -2.5,0.25
-        monitor: true
-      ch59.voltage:
-        alias: C2_5
-        label: C2_5
-        limits: -2.5,0.25
-        monitor: true
-      ch60.voltage:
-        alias: RP2_5
-        label: RP2_5
-        limits: -2.5,0.25
-        monitor: true
-      ch61.voltage:
-        alias: RW2_5
-        label: RW2_5
-        limits: -2.5,0.25
-        monitor: true
-      ch02.voltage:
-        alias: N2_5
-        label: N2_5
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT SENSING DOT, DOT 5
-      ch03.voltage:
-        alias: RSD_T_5
-        label: RSD_T_5
-        limits: -2.5,0.25
-        monitor: true
-      ch41.voltage:
-        alias: RSD_C_5
-        label: RSD_C_5
-        limits: -2.5,0.25
-        monitor: true
-      ch16.voltage:
-        alias: RSD_B_5
-        label: RSD_B_5
-        limits: -2.5,0.25
-        monitor: true
-      # JELLYBEAN, DOT 5
-      ch55.voltage:
-        alias: JBL_5
-        label: JBL_5
-        limits: -2.5,0.25
-        monitor: true
-      ch56.voltage:
-        alias: JBC_5
-        label: JBC_5
-        limits: -2.5,0.25
-        monitor: true
-      ch40.voltage:
-        alias: JBR_5
-        label: JBR_5
-        limits: -2.5,0.25
-        monitor: true
-      ch26.voltage:
-        alias: JBB_5
-        label: JBB_5
+        unit: V
         limits: -2.5,0.25
         monitor: true
       
+      # LEFT DOUBLE DOT, DOT 5
+      LW1_5:
+        source: ch49.voltage
+        label: LW1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      LP1_5:
+        source: ch50.voltage
+        label: LP1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      C1_5:
+        source: ch51.voltage
+        label: C1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RP1_5:
+        source: ch52.voltage
+        label: RP1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RW1_5:
+        source: ch53.voltage
+        label: RW1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      N1_5:
+        source: ch54.voltage
+        label: N1_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      # LEFT SENSING DOT, DOT 5
+      LSD_T_5:
+        source: ch62.voltage
+        label: LSD_T_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      LSD_C_5:
+        source: ch63.voltage
+        label: LSD_C_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      LSD_B_5:
+        source: ch64.voltage
+        label: LSD_B_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT DOUBLE DOT, DOT 5
+      LW2_5:
+        source: ch57.voltage
+        label: LW2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      LP2_5:
+        source: ch58.voltage
+        label: LP2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      C2_5:
+        source: ch59.voltage
+        label: C2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RP2_5:
+        source: ch60.voltage
+        label: RP2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RW2_5:
+        source: ch61.voltage
+        label: RW2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      N2_5:
+        source: ch02.voltage
+        label: N2_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      # RIGHT SENSING DOT, DOT 5
+      RSD_T_5:
+        source: ch03.voltage
+        label: RSD_T_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RSD_C_5:
+        source: ch41.voltage
+        label: RSD_C_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      RSD_B_5:
+        source: ch16.voltage
+        label: RSD_B_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      # JELLYBEAN, DOT 5
+      JBL_5:
+        source: ch55.voltage
+        label: JBL_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      JBC_5:
+        source: ch56.voltage
+        label: JBC_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      JBR_5:
+        source: ch40.voltage
+        label: JBR_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      JBB_5:
+        source: ch26.voltage
+        label: JBB_5
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+
+      # Source Drain Bias
+      bias:
+        source: ch01.voltage
+        label: Source Drain Bias
+        limits: -0.002, 0.002
+        monitor: true
+
+    parameter:
       temperature:
         label: MDAC temperature
         monitor: true
+
 
   sr860:
     # class of the instrument
@@ -307,6 +360,7 @@ instruments:
         scale: 10000
         monitor: True
     auto_reconnect: true
+
   ithaco:
     driver: qcodes.instrument_drivers.ithaco.Ithaco_1211
     type: Ithaco_1211
@@ -322,20 +376,61 @@ instruments:
       risetime:
         initial_value: 0.1
 
-    # # new parameters, that get created and attached to the instrument
-    # new_parameter:
-    # # ex: DC current
-    # DC:
-    #   # source specifies which getter and setter should be used
-    #   source: # e.g channel
-    #   # label and unit change these attributes of the parameter
-    #   label:
-    #   unit: #
-    #   limits:
-    #   monitor: true
-#
-#
-# Alternative way of specifying parameters:
-# parameters:
-#   ch01.v: {alias: gate1, label: cutter right}
+  pna:
+    driver: qcodes.instrument_drivers.Keysight.N5245A
+    type: N5245A
+    address: pna
 
+  qubit_source:
+    driver: qcodes.instrument_drivers.rohde_schwarz.SGS100A
+    type: SGS100A
+    address: TCPIP0::vlan1366-a31-10-66-41-182::inst0::INSTR
+
+    parameters:
+      # Tunable parameters
+      frequency:
+        monitor: true
+      phase:
+        monitor: true
+      power:
+        monitor: true
+        limits: -80, -30
+      status:
+        monitor: true
+
+      # instrument state
+      IQ_state:
+        initial_value: off
+      pulsemod_state:
+        initial_value: off
+      ref_osc_source:
+        initial_value: EXT
+      ref_osc_external_freq:
+        initial_value: 10MHz
+
+  lo_source:
+    driver: qcodes.instrument_drivers.rohde_schwarz.SGS100A
+    type: SGS100A
+    address: TCPIP0::vlan1366-a31-10-66-41-182::inst0::INSTR
+
+    parameters:
+      # Tunable parameters
+      frequency:
+        monitor: true
+      phase:
+        monitor: true
+      power:
+        monitor: true
+        limits: -30, 13
+      status:
+        monitor: true
+
+      # instrument state
+      IQ_state:
+        initial_value: off
+      pulsemod_state:
+        initial_value: off
+      ref_osc_source:
+        initial_value: EXT
+      ref_osc_external_freq:
+        initial_value: 10MHz
