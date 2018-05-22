@@ -15,25 +15,12 @@ midas.raster_rate(66)
 
 midas.ch1.frequency(369.7)
 
-midas.ch1.magnitude.shape=(2048,)
-midas.ch1.magnitude.setpoints=(np.linspace(0, 1, 2048),)
-midas.ch1.magnitude.setpoint_labels = ("Voltage", )
-midas.ch1.magnitude.setpoint_units = ("V", )
-
-midas.ch1.I.shape=(2048,)
-midas.ch1.I.setpoints=(np.linspace(0, 1, 2048),)
-midas.ch1.I.setpoint_labels = ("Voltage", )
-midas.ch1.I.setpoint_units = ("V", )
-
-midas.ch1.Q.shape=(2048,)
-midas.ch1.Q.setpoints=(np.linspace(0, 1, 2048),)
-midas.ch1.Q.setpoint_labels = ("Voltage", )
-midas.ch1.Q.setpoint_units = ("V", )
-
-midas.ch1.phase.shape=(2048,)
-midas.ch1.phase.setpoints=(np.linspace(0, 1, 2048),)
-midas.ch1.phase.setpoint_labels = ("Voltage", )
-midas.ch1.phase.setpoint_units = ("V", )
+for param in ("magnitude", "phase", "I", "Q"):
+    param = getattr(midas.ch1, param)
+    param.shape=(2048,)
+    param.setpoints=(np.linspace(0, 1, 2048),)
+    param.setpoint_labels = ("Voltage", )
+    param.setpoint_units = ("V", )
 
 
 def linear1d_midas(midas, param_set, start, stop, num_points, delay, *param_meas, 
