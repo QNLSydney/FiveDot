@@ -48,6 +48,9 @@ scfg = StationConfigurator()
 mdac = scfg.load_instrument('mdac')
 lockin = scfg.load_instrument('sr860')
 ithaco = scfg.load_instrument('ithaco')
+qubit_source = scfg.load_instrument('qubit_source')
+lo_source = scfg.load_instrument('lo_source')
+dso = scfg.load_instrument('dso')
 
 # Set up gate sets from Bottom
 #OHMICS_1_NUMS = (x-1 for x in tuple())

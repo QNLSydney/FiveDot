@@ -322,7 +322,7 @@ instruments:
     driver: qcodes.instrument_drivers.stanford_research.SR860
     type: SR860
     # visa address
-    address: TCPIP0::10.66.41.10::inst0::INSTR
+    address: TCPIP::192.168.0.11::inst0::INSTR
     # all following fields are optional:
     # init:
       # Use this to simulate an instrument if you don't have 
@@ -379,12 +379,12 @@ instruments:
   pna:
     driver: qcodes.instrument_drivers.Keysight.N5245A
     type: N5245A
-    address: pna
+    address: TCPIP::192.168.0.10::inst0::INSTR
 
   qubit_source:
     driver: qcodes.instrument_drivers.rohde_schwarz.SGS100A
-    type: SGS100A
-    address: TCPIP0::vlan1366-a31-10-66-41-182::inst0::INSTR
+    type: RohdeSchwarz_SGS100A
+    address: TCPIP::192.168.0.12::inst0::INSTR
 
     parameters:
       # Tunable parameters
@@ -400,9 +400,9 @@ instruments:
 
       # instrument state
       IQ_state:
-        initial_value: off
+        initial_value: "off"
       pulsemod_state:
-        initial_value: off
+        initial_value: "off"
       ref_osc_source:
         initial_value: EXT
       ref_osc_external_freq:
@@ -410,8 +410,8 @@ instruments:
 
   lo_source:
     driver: qcodes.instrument_drivers.rohde_schwarz.SGS100A
-    type: SGS100A
-    address: TCPIP0::vlan1366-a31-10-66-41-182::inst0::INSTR
+    type: RohdeSchwarz_SGS100A
+    address: TCPIP::192.168.0.13::inst0::INSTR
 
     parameters:
       # Tunable parameters
@@ -427,10 +427,15 @@ instruments:
 
       # instrument state
       IQ_state:
-        initial_value: off
+        initial_value: "off"
       pulsemod_state:
-        initial_value: off
+        initial_value: "off"
       ref_osc_source:
         initial_value: EXT
       ref_osc_external_freq:
         initial_value: 10MHz
+
+  dso:
+    driver: qcodes.instrument_drivers.Keysight.Infiniium
+    type: Infiniium
+    address: TCPIP::192.168.0.14::inst0::INSTR
