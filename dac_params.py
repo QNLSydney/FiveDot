@@ -75,35 +75,9 @@ class RasterParam(ArrayParameter):
             self.prepare_curvedata = readout_source.prepare_curvedata
         npts = readout_source.shape[0]
         
-        # If we need to cut some points from the beginning, subtract from npts
-        if cut is not None:
-            npts -= cut
-        
-        # Set our setpoints
+        # Set our setpoints and shape
         self.setpoints = (np.linspace(start, stop, npts),)
         self.shape = (npts,)
     
     def get_raw(self):
         return self.readout_source.get()
-
-class MidasRasterParam(RasterParam):
-    def __init__(self, name, gate_source, readout_source, amplitude_override=None,
-                 differentiate=True, cut=0):
-        
-        self.cut = cut
-        super().__init__(name, gate_source, readout_source, amplitude_override)
-        self.differentiate = differentiate
-    
-    def refresh(self):
-        super().refresh(cut=self.cut)
-    
-    def get_raw(self):
-        self.readout_source._instrument._parent.averaged_1d_trace()
-        d = super().get_raw()
-        d = signal.savgol_filter(d, 15, 3)
-        if self.differentiate:
-            d = np.gradient(d)
-            d = signal.savgol_filter(d, 15, 3)
-        d = d[self.cut:]
-        return d
-    
