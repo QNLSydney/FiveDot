@@ -30,6 +30,8 @@ import numpy as np
 
 from dac_params import *
 
+import matplotlib.pyplot as plt
+
 # Close any instruments that may already be open
 instruments = list(qc.Instrument._all_instruments.keys())
 for instrument in instruments:
@@ -45,12 +47,14 @@ print('Experiment loaded. Last ID no:', exp.last_counter)
 
 scfg = StationConfigurator()
 
-mdac = scfg.load_instrument('mdac')
 lockin = scfg.load_instrument('sr860')
 ithaco = scfg.load_instrument('ithaco')
 qubit_source = scfg.load_instrument('qubit_source')
 lo_source = scfg.load_instrument('lo_source')
 dso = scfg.load_instrument('dso')
+midas = scfg.load_instrument('midas')
+atten = scfg.load_instrument('atten')
+mdac = scfg.load_instrument('mdac')
 
 # Set up gate sets from Bottom
 #OHMICS_1_NUMS = (x-1 for x in tuple())

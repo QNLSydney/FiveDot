@@ -439,3 +439,17 @@ instruments:
     driver: qcodes.instrument_drivers.Keysight.Infiniium
     type: Infiniium
     address: TCPIP::192.168.0.14::inst0::INSTR
+
+  midas:
+    driver: midas
+    type: Midas
+    address: '192.168.0.15'
+    port: 27016
+
+  atten:
+    driver: qcodes.instrument_drivers.Minicircuits.RUDAT_13G_90
+    type: RUDAT_13G_90_USB
+
+    parameters:
+      attenuation:
+        initial_value: 90
