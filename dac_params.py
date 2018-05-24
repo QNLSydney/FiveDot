@@ -9,6 +9,7 @@ from qcodes.instrument_drivers.Keysight.Infiniium import InfiniiumChannel
 import numpy as np
 import time
 import qcodes_measurements as qcm
+from scipy import signal
 
 class CombinedVoltage(Parameter):
     def __init__(self, name, label, *gates):
@@ -32,12 +33,10 @@ class CombinedVoltage(Parameter):
                 time.sleep(0.05)
                 
 class RasterParam(ArrayParameter):
-    def __init__(self, name, gate_source, readout_source):
+    def __init__(self, name, gate_source, readout_source, amplitude_override=None):
         
         # Set sources
         self.gate_source = qcm.ensure_channel(gate_source)
-        if not isinstance(readout_source, ArrayParameter):
-            raise TypeError("Readout Source must be an array parameter")
         self.readout_source = readout_source
         
         # Initialize parameter
@@ -50,16 +49,23 @@ class RasterParam(ArrayParameter):
                        setpoint_units=(gate_source.unit,),
                        setpoint_labels=(gate_source.label,))
         
+        self.amplitude = amplitude_override
+        
         self.refresh()
     
-    def refresh(self):
+    def refresh(self, cut=None):
         gate_source = self.gate_source
         readout_source = self.readout_source
         # Calculate setpoints
-        if gate_source.waveform() != 'saw':
-            raise ValueError("No sawtooth on gate")
-        amplitude = gate_source.amplitude()
-        offset = gate_source.offset()
+        if self.amplitude is None:
+            if gate_source.waveform() != 'saw':
+                raise ValueError("No sawtooth on gate")
+            amplitude = gate_source.amplitude()
+            offset = gate_source.offset()
+        else:
+            amplitude = self.amplitude
+            offset = gate_source.voltage()
+            
         start = offset - amplitude/2
         stop = offset + amplitude/2
         
@@ -69,9 +75,35 @@ class RasterParam(ArrayParameter):
             self.prepare_curvedata = readout_source.prepare_curvedata
         npts = readout_source.shape[0]
         
+        # If we need to cut some points from the beginning, subtract from npts
+        if cut is not None:
+            npts -= cut
+        
         # Set our setpoints
         self.setpoints = (np.linspace(start, stop, npts),)
-        self.shape = readout_source.shape
+        self.shape = (npts,)
     
     def get_raw(self):
         return self.readout_source.get()
+
+class MidasRasterParam(RasterParam):
+    def __init__(self, name, gate_source, readout_source, amplitude_override=None,
+                 differentiate=True, cut=0):
+        
+        self.cut = cut
+        super().__init__(name, gate_source, readout_source, amplitude_override)
+        self.differentiate = differentiate
+    
+    def refresh(self):
+        super().refresh(cut=self.cut)
+    
+    def get_raw(self):
+        self.readout_source._instrument._parent.averaged_1d_trace()
+        d = super().get_raw()
+        d = signal.savgol_filter(d, 15, 3)
+        if self.differentiate:
+            d = np.gradient(d)
+            d = signal.savgol_filter(d, 15, 3)
+        d = d[self.cut:]
+        return d
+    
