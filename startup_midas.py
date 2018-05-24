@@ -7,4 +7,4 @@ Created on Fri May 18 15:58:17 2018
 
 from midas import Midas
 
-midas = Midas('midas', '10.66.41.166', 27016)
+midas = Midas('midas', '192.168.0.15', 27016)
