@@ -1,3 +1,0 @@
-[submodule "qcodes_measurements"]
-	path = qcodes_measurements
-	url = git@github.com:QNLSydney/qcodes_measurements.git
