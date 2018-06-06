@@ -29,286 +29,159 @@ instruments:
       #   monitor: true
 
       # LEFT DOUBLE DOT, DOT 1
-      LW1_1:
-        source: ch09.voltage
-        label: LW1_1
+      LW1:
+        source: ch49.voltage
+        label: LW1
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LP1_1:
-        source: ch32.voltage
-        label: LP1_1
+      LP1:
+        source: ch50.voltage
+        label: LP1
         unit: V
         limits: -2.5,0.25
         monitor: true
-      C1_1:
-        source: ch34.voltage
-        label: C1_1
+      C1:
+        source: ch51.voltage
+        label: C1
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RP1_1:
-        source: ch31.voltage
-        label: RP1_1
+      RP1:
+        source: ch52.voltage
+        label: RP1
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RW1_1:
-        source: ch23.voltage
-        label: RW1_1
+      RW1:
+        source: ch53.voltage
+        label: RW1
         unit: V
         limits: -2.5,0.25
         monitor: true
-      N1_1:
-        source: ch18.voltage
-        label: N1_1
+      N1:
+        source: ch54.voltage
+        label: N1
         unit: V
         limits: -2.5,0.25
         monitor: true
       # LEFT SENSING DOT, DOT 1
-      LSD_T_1:
-        source: ch29.voltage
-        label: LSD_T_1
+      LSD_T:
+        source: ch55.voltage
+        label: LSD_T
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LSD_C_1:
-        source: ch17.voltage
-        label: LSD_C_1
+      LSD_C:
+        source: ch56.voltage
+        label: LSD_C
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LSD_B_1:
-        source: ch05.voltage
-        label: LSD_B_1
+      LSD_B:
+        source: ch48.voltage
+        label: LSD_B
         unit: V
         limits: -2.5,0.25
         monitor: true
       # RIGHT DOUBLE DOT, DOT 1
-      LW2_1:
-        source: ch47.voltage
-        label: LW2_1
+      LW2:
+        source: ch12.voltage
+        label: LW2
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LP2_1:
-        source: ch42.voltage
-        label: LP2_1
+      LP2:
+        source: ch57.voltage
+        label: LP2
         unit: V
         limits: -2.5,0.25
         monitor: true
-      C2_1:
-        source: ch28.voltage
-        label: C2_1
+      C2:
+        source: ch31.voltage
+        label: C2
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RP2_1:
-        source: ch38.voltage
-        label: RP2_1
+      RP2:
+        source: ch45.voltage
+        label: RP2
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RW2_1:
-        source: ch36.voltage
-        label: RW2_1
+      RW2:
+        source: ch01.voltage
+        label: RW2
         unit: V
         limits: -2.5,0.25
         monitor: true
-      N2_1:
-        source: ch22.voltage
-        label: N2_1
+      N2:
+        source: ch58.voltage
+        label: N2
         unit: V
         limits: -2.5,0.25
         monitor: true
       # RIGHT SENSING DOT, DOT 1
-      RSD_T_1:
-        source: ch10.voltage
-        label: RSD_T_1
+      RSD_T:
+        source: ch59.voltage
+        label: RSD_T
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RSD_C_1:
-        source: ch45.voltage
-        label: RSD_C_1
+      RSD_C:
+        source: ch60.voltage
+        label: RSD_C
         unit: V
         limits: -2.5,0.25
         monitor: true
-      RSD_B_1:
-        source: ch21.voltage
-        label: RSD_B_1
+      RSD_B:
+        source: ch61.voltage
+        label: RSD_B
         unit: V
         limits: -2.5,0.25
         monitor: true
       # JELLYBEAN, DOT 1
-      JBL_1:
-        source: ch30.voltage
-        label: JBL_1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBC_1:
-        source: ch35.voltage
-        label: JBC_1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBR_1:
-        source: ch44.voltage
-        label: JBR_1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBB_1:
-        source: ch46.voltage
-        label: JBB_1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      
-      # LEFT DOUBLE DOT, DOT 5
-      LW1_5:
-        source: ch49.voltage
-        label: LW1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LP1_5:
-        source: ch50.voltage
-        label: LP1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      C1_5:
-        source: ch51.voltage
-        label: C1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RP1_5:
-        source: ch52.voltage
-        label: RP1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RW1_5:
-        source: ch53.voltage
-        label: RW1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      N1_5:
-        source: ch54.voltage
-        label: N1_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # LEFT SENSING DOT, DOT 5
-      LSD_T_5:
+      JBL:
         source: ch62.voltage
-        label: LSD_T_5
+        label: JBL
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LSD_C_5:
+      JBC:
+        source: ch39.voltage
+        label: JBC
+        unit: V
+        limits: -2.5,0.25
+        monitor: true
+      JBR:
         source: ch63.voltage
-        label: LSD_C_5
+        label: JBR
         unit: V
         limits: -2.5,0.25
         monitor: true
-      LSD_B_5:
+      JBB:
         source: ch64.voltage
-        label: LSD_B_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT DOUBLE DOT, DOT 5
-      LW2_5:
-        source: ch57.voltage
-        label: LW2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LP2_5:
-        source: ch58.voltage
-        label: LP2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      C2_5:
-        source: ch59.voltage
-        label: C2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RP2_5:
-        source: ch60.voltage
-        label: RP2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RW2_5:
-        source: ch61.voltage
-        label: RW2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      N2_5:
-        source: ch02.voltage
-        label: N2_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT SENSING DOT, DOT 5
-      RSD_T_5:
-        source: ch03.voltage
-        label: RSD_T_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RSD_C_5:
-        source: ch41.voltage
-        label: RSD_C_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RSD_B_5:
-        source: ch16.voltage
-        label: RSD_B_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # JELLYBEAN, DOT 5
-      JBL_5:
-        source: ch55.voltage
-        label: JBL_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBC_5:
-        source: ch56.voltage
-        label: JBC_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBR_5:
-        source: ch40.voltage
-        label: JBR_5
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBB_5:
-        source: ch26.voltage
-        label: JBB_5
+        label: JBB
         unit: V
         limits: -2.5,0.25
         monitor: true
 
       # Source Drain Bias
       bias:
-        source: ch01.voltage
+        source: ch16.voltage
         label: Source Drain Bias
         limits: -0.002, 0.002
+        scale: 100
+        monitor: true
+
+      # Trigger
+      trigger:
+        source: ch08.amplitude
+        label: Trigger
+        monitor: true
+      trigger_freq:
+        source: ch08.frequency
+        label: Trigger frequency
         monitor: true
 
     parameter:
@@ -441,7 +314,7 @@ instruments:
     address: TCPIP::192.168.0.14::inst0::INSTR
 
   midas:
-    driver: midas
+    driver: MIDAS.midas
     type: Midas
     address: '192.168.0.15'
     port: 27016
@@ -453,3 +326,20 @@ instruments:
     parameters:
       attenuation:
         initial_value: 90
+
+  yoko:
+    driver: qcodes.instrument_drivers.yokogawa.GS200
+    type: GS200
+    address: TCPIP::192.168.0.17::inst0::INSTR
+
+  dmm:
+    driver: qcodes.instrument_drivers.Keysight.Keysight_34465A
+    type: Keysight_34465A
+    address: TCPIP::192.168.0.18::inst0::INSTR
+
+    add_parameters:
+      ithaco_current:
+        source: volt
+        label: Current
+        unit: A
+        scale: 1000000
