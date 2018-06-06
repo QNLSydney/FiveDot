@@ -81,3 +81,11 @@ class RasterParam(ArrayParameter):
     
     def get_raw(self):
         return self.readout_source.get()
+
+class Time(Parameter):
+    def __init__(self):
+        super().__init__("Time",
+             unit="s",
+             label="Time")
+        
+        self.time
