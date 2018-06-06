@@ -105,3 +105,6 @@ figures/
 iPython_Logs
 MDAC_Logs
 Logbook
+
+# Ignore windows stuff
+~$*
