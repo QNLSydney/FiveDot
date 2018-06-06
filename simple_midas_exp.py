@@ -15,7 +15,7 @@ midas.sw_mode(0)
 midas.raster_rate(8)
 midas.num_sweeps_2d(1)
 
-midas.ch1.frequency(370.5)
+midas.ch1.frequency(370.5e6)
 
 for param in ("magnitude", "phase", "I", "Q"):
     param = getattr(midas.ch1, param)
