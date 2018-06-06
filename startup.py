@@ -16,8 +16,7 @@ from qcodes import ChannelList, Parameter
 from qcodes.dataset.measurements import Measurement
 from qcodes.dataset.plotting import plot_by_id
 from qcodes.dataset.data_set import load_by_id, load_by_counter
-from qcodes import Station
-from qcodes.dataset.experiment_container import load_experiment_by_name
+from qcodes.dataset.experiment_container import new_experiment, load_experiment_by_name
 from qcodes.instrument_drivers.Keysight.N5245A import N5245A
 
 from qdev_wrappers.station_configurator import StationConfigurator
@@ -27,6 +26,7 @@ from qcodes_measurements.plot.plot_tools import *
 
 import time
 import numpy as np
+import scipy
 
 from dac_params import *
 
@@ -40,45 +40,71 @@ for instrument in instruments:
     instr.close()
 
 exp_name = 'QDP_FIVEDOT'
-sample_name = 'M08-10-16.2_0003_CHER'
+sample_name = 'M08-10-16.2_0003_CHER_D6'
 
-exp = load_experiment_by_name(exp_name, sample=sample_name)
-print('Experiment loaded. Last ID no:', exp.last_counter)
+try:
+    exp = load_experiment_by_name(exp_name, sample=sample_name)
+    print('Experiment loaded. Last ID no:', exp.last_counter)
+except ValueError:
+    exp = new_experiment(exp_name, sample_name)
+    print('Starting new experiment.')
 
 scfg = StationConfigurator()
 
 lockin = scfg.load_instrument('sr860')
 ithaco = scfg.load_instrument('ithaco')
-qubit_source = scfg.load_instrument('qubit_source')
-lo_source = scfg.load_instrument('lo_source')
+#qubit_source = scfg.load_instrument('qubit_source')
+#lo_source = scfg.load_instrument('lo_source')
 #dso = scfg.load_instrument('dso')
-midas = scfg.load_instrument('midas')
-atten = scfg.load_instrument('atten')
+#midas = scfg.load_instrument('midas')
+#atten = scfg.load_instrument('atten')
 mdac = scfg.load_instrument('mdac')
+yoko = scfg.load_instrument('yoko')
+dmm = scfg.load_instrument('dmm')
 
-# Set up gate sets from Bottom
-#OHMICS_1_NUMS = (x-1 for x in tuple())
-#GATES_1_NUMS = (x-1 for x in tuple())
-#OHMICS_2_NUMS = (x-1 for x in (36, 29, 20, 27))
-#GATES_2_NUMS = (x-1 for x in (47, 42, 41, 31, 11, 37, 45, 28, 34, 24, 39, 
-#                              7, 19, 18, 30, 5))
-#SHORTS_NUMS = (x-1 for x in (15, 13, 40, 3, 48, 10, 1, 12, 14, 2))
+# Biasing Gate Sets
+OHMICS_BIAS_NUMS = (x-1 for x in (11, 6, 43, 39, 26, 38))
+GATE_BIAS_NUMS = (x-1 for x in (47, 34, 36, 31, 24, 28, 10, 21, 8, 44, 7, 
+                                30, 5, 42, 29, 17))
+OHMICS_BIAS = qcm.make_channel_list(mdac, "Bias_Ohmics", OHMICS_BIAS_NUMS)
+GATES_BIAS = qcm.make_channel_list(mdac, "Bias_Gates", GATE_BIAS_NUMS)
+BIAS_BUS_CHAN = mdac.ch64
 
 # Set up gate sets
-OHMICS_1_NUMS = (x-1 for x in (37, 48, 24, 11, 19, 7))
-GATES_1_NUMS = (x-1 for x in (9, 32, 34, 31, 23, 46, 47, 42, 28, 38, 36, 21, 45, 10, 
-                       22, 44, 35, 30, 18, 29, 17, 5))
-OHMICS_2_NUMS = (x-1 for x in (14, 15))
-GATES_2_NUMS = (x-1 for x in (49, 50, 51, 52, 53, 26, 57, 58, 59, 60, 61, 16, 41, 3, 
-                              2, 40, 56, 55, 54, 62, 63, 64))
-SHORTS_NUMS = (x-1 for x in (1, 25, 8, 20, 13, 12))
+OHMICS_1_NUMS = (x-1 for x in (41, 28, 15))
+GATES_MDAC_1_NUMS = (x-1 for x in (12, 31, 45, 1, 39))
+GATES_BB_1_NUMS = tuple(x-1 for x in range(48, 65))
+
+OHMICS_2_NUMS = (x-1 for x in tuple())
+GATES_MDAC_2_NUMS = (x-1 for x in tuple())
+GATES_BB_2_NUMS = (x-1 for x in tuple())
+
+SHORTS_NUMS = (x-1 for x in (37, 11, 33, 44, 20, 19, 4, 3, 14, 25, 43, 30))
 
 SHORTS = qcm.make_channel_list(mdac, "Shorts", SHORTS_NUMS)
+
 OHMICS_1 = qcm.make_channel_list(mdac, "Dev_1_Ohmics", OHMICS_1_NUMS)
-GATES_1 = qcm.make_channel_list(mdac, "Dev_1_Gates", GATES_1_NUMS)
+GATES_MDAC_1 = qcm.make_channel_list(mdac, "Dev_1_Gates", GATES_MDAC_1_NUMS)
+GATES_BB_1 = qcm.make_channel_list(mdac, "Dev_1_Gates", GATES_BB_1_NUMS)
+GATES_1 = GATES_MDAC_1 + GATES_BB_1
+
 OHMICS_2 = qcm.make_channel_list(mdac, "Dev_2_Ohmics", OHMICS_2_NUMS)
-GATES_2 = qcm.make_channel_list(mdac, "Dev_2_Gates", GATES_2_NUMS)
+GATES_MDAC_2 = qcm.make_channel_list(mdac, "Dev_2_Gates", GATES_MDAC_2_NUMS)
+GATES_BB_2 = qcm.make_channel_list(mdac, "Dev_2_Gates", GATES_BB_2_NUMS)
+GATES_2 = GATES_MDAC_2 + GATES_BB_2
+
 OHMICS = OHMICS_1 + OHMICS_2
+GATES_MDAC = GATES_MDAC_1 + GATES_MDAC_2
+GATES_BB = GATES_BB_1 + GATES_BB_2
 GATES = GATES_1 + GATES_2
 
 GATES.rate(0.05)
+
+# Rasters
+#LP2_5 = qcm.tools.mdac.ensure_channel(mdac.LP2_5)
+
+# Raster Parameters
+#dso.ch1.trace.prepare_curvedata()
+#raster = RasterParam("Raster_LP2_5", mdac.LP2_5, midas.ch1.I)
+#raster_cut = qcm.CutWrapper(raster, fromstart=70)
+#raster_diff = qcm.DiffFilter(raster_cut)
