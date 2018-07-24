@@ -87,5 +87,10 @@ class Time(Parameter):
         super().__init__("Time",
              unit="s",
              label="Time")
+        self.init = time.process_time()
         
-        self.time
+    def set_raw(self, val):
+        pass
+    
+    def get_raw(self):
+        return time.process_time() - self.init

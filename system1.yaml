@@ -13,7 +13,7 @@ instruments:
     init: 
       logging: false
 
-    add_parameters:
+    #add_parameters:
       # Set up default parameters
         
       # Can use first one as sort of template or basis settings
@@ -29,160 +29,30 @@ instruments:
       #   monitor: true
 
       # LEFT DOUBLE DOT, DOT 1
-      LW1:
-        source: ch49.voltage
-        label: LW1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LP1:
-        source: ch50.voltage
-        label: LP1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      C1:
-        source: ch51.voltage
-        label: C1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RP1:
-        source: ch52.voltage
-        label: RP1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RW1:
-        source: ch53.voltage
-        label: RW1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      N1:
-        source: ch54.voltage
-        label: N1
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # LEFT SENSING DOT, DOT 1
-      LSD_T:
-        source: ch55.voltage
-        label: LSD_T
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LSD_C:
-        source: ch56.voltage
-        label: LSD_C
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LSD_B:
-        source: ch48.voltage
-        label: LSD_B
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT DOUBLE DOT, DOT 1
-      LW2:
-        source: ch12.voltage
-        label: LW2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      LP2:
-        source: ch57.voltage
-        label: LP2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      C2:
-        source: ch31.voltage
-        label: C2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RP2:
-        source: ch45.voltage
-        label: RP2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RW2:
-        source: ch01.voltage
-        label: RW2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      N2:
-        source: ch58.voltage
-        label: N2
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # RIGHT SENSING DOT, DOT 1
-      RSD_T:
-        source: ch59.voltage
-        label: RSD_T
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RSD_C:
-        source: ch60.voltage
-        label: RSD_C
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      RSD_B:
-        source: ch61.voltage
-        label: RSD_B
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      # JELLYBEAN, DOT 1
-      JBL:
-        source: ch62.voltage
-        label: JBL
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBC:
-        source: ch39.voltage
-        label: JBC
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBR:
-        source: ch63.voltage
-        label: JBR
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
-      JBB:
-        source: ch64.voltage
-        label: JBB
-        unit: V
-        limits: -2.5,0.25
-        monitor: true
+#      LW1:
+#        source: ch49.voltage
+#        label: LW1
+#        unit: V
+#        limits: -2.5,0.25
+#        monitor: true
 
       # Source Drain Bias
-      bias:
-        source: ch16.voltage
-        label: Source Drain Bias
-        limits: -0.002, 0.002
-        scale: 100
-        monitor: true
+#      bias:
+#        source: ch16.voltage
+#        label: Source Drain Bias
+#        limits: -0.002, 0.002
+#        scale: 100
+#        monitor: true
 
       # Trigger
-      trigger:
-        source: ch08.amplitude
-        label: Trigger
-        monitor: true
-      trigger_freq:
-        source: ch08.frequency
-        label: Trigger frequency
-        monitor: true
+#      trigger:
+#        source: ch08.amplitude
+#        label: Trigger
+#        monitor: true
+#      trigger_freq:
+#        source: ch08.frequency
+#        label: Trigger frequency
+#        monitor: true
 
     parameter:
       temperature:
@@ -226,11 +96,11 @@ instruments:
         monitor: True
       amplitude:
         label: excitation
-        scale: 10000
+        scale: 1
         monitor: True
       sine_outdc:
         label: DC offset
-        scale: 10000
+        scale: 1
         monitor: True
     auto_reconnect: true
 

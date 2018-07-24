@@ -38,9 +38,10 @@ for instrument in instruments:
     instr = qc.Instrument._all_instruments.pop(instrument)
     instr = instr()
     instr.close()
+del instruments
 
 exp_name = 'QDP_FIVEDOT'
-sample_name = 'M08-10-16.2_0003_CHER_D6'
+sample_name = 'M02_24_17.1_0003_MARIAH_D2345'
 
 try:
     exp = load_experiment_by_name(exp_name, sample=sample_name)
@@ -53,9 +54,9 @@ scfg = StationConfigurator()
 
 lockin = scfg.load_instrument('sr860')
 ithaco = scfg.load_instrument('ithaco')
-#qubit_source = scfg.load_instrument('qubit_source')
-#lo_source = scfg.load_instrument('lo_source')
-#dso = scfg.load_instrument('dso')
+qubit_source = scfg.load_instrument('qubit_source')
+lo_source = scfg.load_instrument('lo_source')
+dso = scfg.load_instrument('dso')
 #midas = scfg.load_instrument('midas')
 #atten = scfg.load_instrument('atten')
 mdac = scfg.load_instrument('mdac')
@@ -63,48 +64,43 @@ yoko = scfg.load_instrument('yoko')
 dmm = scfg.load_instrument('dmm')
 
 # Biasing Gate Sets
-OHMICS_BIAS_NUMS = (x-1 for x in (11, 6, 43, 39, 26, 38))
-GATE_BIAS_NUMS = (x-1 for x in (47, 34, 36, 31, 24, 28, 10, 21, 8, 44, 7, 
-                                30, 5, 42, 29, 17))
+OHMICS_BIAS_NUMS = tuple(x-1 for x in (2, 4, 9, 10, 12, 20, 24, 38, 39, 47, 48))
+GATES_BIAS_NUMS =  tuple(x-1 for x in (1, 3, 5, 6, 7, 8, 11, 13, 14, 15, 16, 
+                                       17, 18, 19, 21, 22, 23, 25, 26, 27, 28, 
+                                       29, 30, 31, 32, 33, 34, 35, 36, 37, 40, 
+                                       41, 42, 43, 44, 45, 46))
 OHMICS_BIAS = qcm.make_channel_list(mdac, "Bias_Ohmics", OHMICS_BIAS_NUMS)
-GATES_BIAS = qcm.make_channel_list(mdac, "Bias_Gates", GATE_BIAS_NUMS)
+GATES_BIAS = qcm.make_channel_list(mdac, "Bias_Gates", GATES_BIAS_NUMS)
 BIAS_BUS_CHAN = mdac.ch64
 
-# Set up gate sets
-OHMICS_1_NUMS = (x-1 for x in (41, 28, 15))
-GATES_MDAC_1_NUMS = (x-1 for x in (12, 31, 45, 1, 39))
-GATES_BB_1_NUMS = tuple(x-1 for x in range(48, 65))
-
-OHMICS_2_NUMS = (x-1 for x in tuple())
-GATES_MDAC_2_NUMS = (x-1 for x in tuple())
-GATES_BB_2_NUMS = (x-1 for x in tuple())
-
-SHORTS_NUMS = (x-1 for x in (37, 11, 33, 44, 20, 19, 4, 3, 14, 25, 43, 30))
-
+SHORTS_NUMS = (x-1 for x in tuple())
 SHORTS = qcm.make_channel_list(mdac, "Shorts", SHORTS_NUMS)
 
-OHMICS_1 = qcm.make_channel_list(mdac, "Dev_1_Ohmics", OHMICS_1_NUMS)
-GATES_MDAC_1 = qcm.make_channel_list(mdac, "Dev_1_Gates", GATES_MDAC_1_NUMS)
-GATES_BB_1 = qcm.make_channel_list(mdac, "Dev_1_Gates", GATES_BB_1_NUMS)
-GATES_1 = GATES_MDAC_1 + GATES_BB_1
+# OHMICS
+OHMICS_NUMS = tuple(x-1 for x in (2, 4, 10, 12, 20, 21, 24, 31, 38, 39, 47))
+GATE_NUMS   = tuple(x-1 for x in (1, 3, 5, 6, 7, 8, 9, 11, 13, 14, 15, 16, 17, 
+                                  18, 19, 22, 23, 25, 26, 27, 28, 29, 30, 32, 
+                                  33, 34, 35, 36, 37, 40, 41, 42, 43, 44, 45,
+                                  46, 48))
+OHMICS_SET = set(OHMICS_NUMS)
+GATE_SET = set(GATE_NUMS)
+assert(len(OHMICS_SET.intersection(GATE_SET)) == 0)
+assert(len(OHMICS_SET.union(GATE_SET)) == 48)
+OHMICS = qcm.make_channel_list(mdac, "Ohmics", OHMICS_NUMS)
+GATES = qcm.make_channel_list(mdac, "Gates", GATE_NUMS)
 
-OHMICS_2 = qcm.make_channel_list(mdac, "Dev_2_Ohmics", OHMICS_2_NUMS)
-GATES_MDAC_2 = qcm.make_channel_list(mdac, "Dev_2_Gates", GATES_MDAC_2_NUMS)
-GATES_BB_2 = qcm.make_channel_list(mdac, "Dev_2_Gates", GATES_BB_2_NUMS)
-GATES_2 = GATES_MDAC_2 + GATES_BB_2
+OHMICS_4_NUMS = tuple(x-1 for x in (2, 4, 12, 38, 39))
+OHMICS_4 = qcm.make_channel_list(mdac, "Ohmics_Dev_4", OHMICS_4_NUMS)
 
-OHMICS = OHMICS_1 + OHMICS_2
-GATES_MDAC = GATES_MDAC_1 + GATES_MDAC_2
-GATES_BB = GATES_BB_1 + GATES_BB_2
-GATES = GATES_1 + GATES_2
+OHMICS_5_NUMS = tuple(x-1 for x in (20,))
+OHMICS_5 = qcm.make_channel_list(mdac, "Ohmics_Dev_5", OHMICS_5_NUMS)
 
 GATES.rate(0.05)
 
-# Rasters
-#LP2_5 = qcm.tools.mdac.ensure_channel(mdac.LP2_5)
-
 # Raster Parameters
 #dso.ch1.trace.prepare_curvedata()
-#raster = RasterParam("Raster_LP2_5", mdac.LP2_5, midas.ch1.I)
+
+#raster = RasterParam("Raster_RW1", mdac.RW1, dso.ch1.trace)
+
 #raster_cut = qcm.CutWrapper(raster, fromstart=70)
-#raster_diff = qcm.DiffFilter(raster_cut)
+#raster_diff = qcm.DiffFilter(raster)
