@@ -56,9 +56,9 @@ lockin = scfg.load_instrument('sr860')
 ithaco = scfg.load_instrument('ithaco')
 qubit_source = scfg.load_instrument('qubit_source')
 lo_source = scfg.load_instrument('lo_source')
-dso = scfg.load_instrument('dso')
-#midas = scfg.load_instrument('midas')
-#atten = scfg.load_instrument('atten')
+#dso = scfg.load_instrument('dso')
+midas = scfg.load_instrument('midas')
+atten = scfg.load_instrument('atten')
 mdac = scfg.load_instrument('mdac')
 yoko = scfg.load_instrument('yoko')
 dmm = scfg.load_instrument('dmm')
@@ -95,12 +95,22 @@ OHMICS_4 = qcm.make_channel_list(mdac, "Ohmics_Dev_4", OHMICS_4_NUMS)
 OHMICS_5_NUMS = tuple(x-1 for x in (20,))
 OHMICS_5 = qcm.make_channel_list(mdac, "Ohmics_Dev_5", OHMICS_5_NUMS)
 
+# Set ramp rates
 GATES.rate(0.05)
+mdac.channels[48:].rate(0.05)
+
+# Set limits for gates and ohmics
+GATES.voltage.vals = qc.utils.validators.Numbers(-2, 0.5)
+GATES.ramp.vals = qc.utils.validators.Numbers(-2, 0.5)
+mdac.channels[48:].voltage.vals = qc.utils.validators.Numbers(-2, 0.5)
+mdac.channels[48:].ramp.vals = qc.utils.validators.Numbers(-2, 0.5)
+
 
 # Raster Parameters
 #dso.ch1.trace.prepare_curvedata()
 
-#raster = RasterParam("Raster_RW1", mdac.RW1, dso.ch1.trace)
-
-#raster_cut = qcm.CutWrapper(raster, fromstart=70)
-#raster_diff = qcm.DiffFilter(raster)
+#raster = RasterParam("Raster_LW2", mdac.ch57.voltage, midas.ch1.I)
+#raster_phase = RasterParam("Raster_LW2_Ph", mdac.ch57.voltage, midas.ch1.phase)
+#
+#raster_cut = qcm.CutWrapper(raster, fromstart=40)
+#raster_diff = qcm.DiffFilter(raster_cut)
