@@ -48,10 +48,11 @@ for res in ffts:
 fig, ax1 = plt.subplots()
 plt.plot(polys, "b.")
 plt.ylabel("Switching Magnitude (A.U.)")
+plt.xlabel("Sweep Number")
+
 
 ax2 = ax1.twinx()
 plt.plot(means, "r.")
 plt.ylabel("Mean Current (A)")
-plt.xlabel("Sweep Number")
 
 fig.tight_layout()
