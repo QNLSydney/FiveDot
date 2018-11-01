@@ -100,11 +100,15 @@ ENV/
 # mypy
 .mypy_cache/
 
+# vscode
+.vscode/
+
 # Ignore data outputs
 figures/
 iPython_Logs
 MDAC_Logs
 Logbook
+Gate Check Logs/
 
 # Ignore windows stuff
 ~$*
