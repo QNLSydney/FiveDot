@@ -3,19 +3,19 @@ instruments:
   # this is what is looked up by the add_instrument method of StationConfig
 
   mdac:
-    driver: qcodes.instrument_drivers.qnl.MDAC
+    driver: MDAC
     type: MDAC
     address: ASRL5::INSTR
     # if true any existing connection will be closed when instatiated
     # default (if left out) is false
     auto_reconnect: true
     # disable logging, since it seems to be generating quite a lot of data
-    init: 
+    init:
       logging: false
 
     #add_parameters:
       # Set up default parameters
-        
+
       # Can use first one as sort of template or basis settings
       # and use them for other channels
       # chXX.ramp: # &base
@@ -69,7 +69,7 @@ instruments:
     address: TCPIP::192.168.0.11::inst0::INSTR
     # all following fields are optional:
     # init:
-      # Use this to simulate an instrument if you don't have 
+      # Use this to simulate an instrument if you don't have
       # a physical copy at hand
       # visalib: 'lockin.yaml@sim'
     add_parameters:
@@ -123,7 +123,7 @@ instruments:
   pna:
     driver: qcodes.instrument_drivers.Keysight.N5245A
     type: N5245A
-    address: TCPIP::192.168.0.10::inst0::INSTR
+    address: TCPIP::192.168.0.15::inst0::INSTR
 
   qubit_source:
     driver: qcodes.instrument_drivers.rohde_schwarz.SGS100A
@@ -185,7 +185,7 @@ instruments:
     address: TCPIP::192.168.0.14::inst0::INSTR
 
   midas:
-    driver: MIDAS.midas
+    driver: MIDAS
     type: Midas
     address: '192.168.0.22'
     port: 27016
@@ -201,12 +201,12 @@ instruments:
   yoko:
     driver: qcodes.instrument_drivers.yokogawa.GS200
     type: GS200
-    address: TCPIP::192.168.0.17::inst0::INSTR
+    address: TCPIP::192.168.0.10::inst0::INSTR
 
   dmm:
     driver: qcodes.instrument_drivers.Keysight.Keysight_34465A
     type: Keysight_34465A
-    address: TCPIP::192.168.0.18::inst0::INSTR
+    address: TCPIP::192.168.0.8::inst0::INSTR
 
     add_parameters:
       ithaco_current:
