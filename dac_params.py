@@ -33,18 +33,24 @@ class CombinedVoltage(Parameter):
                 time.sleep(0.05)
                 
 class RasterParam(ArrayParameter):
-    def __init__(self, name, gate_source, readout_source, amplitude_override=None):
+    def __init__(self, name, gate_source, readout_source, amplitude_override=None,
+                 label=None, unit=None):
         
         # Set sources
         self.gate_source = qcm.ensure_channel(gate_source)
         self.readout_source = readout_source
         
+        if label is None:
+            label = readout_source.label
+        if unit is None:
+            unit = readout_source.unit
+        
         # Initialize parameter
         super().__init__(name,
                        instrument=gate_source,
                        shape=(1,), # Note we'll overwrite this below
-                       unit=readout_source.unit,
-                       label=readout_source.label,
+                       unit=unit,
+                       label=label,
                        setpoint_names=(gate_source.name,),
                        setpoint_units=(gate_source.unit,),
                        setpoint_labels=(gate_source.label,))
