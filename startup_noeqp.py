@@ -30,8 +30,7 @@ from dac_params import *
 from IPython import get_ipython
 ip = get_ipython()
 ip.magic("logstop")
-ip.magic("logstart -o -t iPython_Logs\\fivedot_log.py rotate")
-ip.magic("load_ext autoreload")
+ip.magic("logstart -o -t iPython_Logs\\fivedot_analysis_log.py rotate")
 ip.magic("autoreload 0")
 
 # Close any instruments that may already be open
