@@ -65,16 +65,15 @@ bb1 = scfg.load_instrument('bb1')
 bb2 = scfg.load_instrument('bb2')
 
 # Biasing Gate Sets
-OHMICS_BIAS_NUMS = tuple(x-1 for x in (2, 4, 9, 10, 12, 20, 24, 38, 39, 47, 48))
-GATES_BIAS_NUMS =  tuple(x-1 for x in (1, 3, 5, 6, 7, 8, 11, 13, 14, 15, 16,
-                                       17, 18, 19, 21, 22, 23, 25, 26, 27, 28,
-                                       29, 30, 31, 32, 33, 34, 35, 36, 37, 40,
-                                       41, 42, 43, 44, 45, 46))
+OHMICS_BIAS_NUMS = tuple(x-1 for x in (11, 12, 37, 38, 45, 46))
+GATES_BIAS_NUMS =  tuple(x-1 for x in (1, 6, 8, 9, 10, 13, 21, 22, 23, 24, 25,
+                                       26, 30, 31, 32, 33, 34, 36, 42, 44, 47, 48))
 OHMICS_BIAS = qcm.make_channel_list(mdac, "Bias_Ohmics", OHMICS_BIAS_NUMS)
 GATES_BIAS = qcm.make_channel_list(mdac, "Bias_Gates", GATES_BIAS_NUMS)
 BIAS_BUS_CHAN = mdac.ch64
 
-SHORTS_NUMS = (x-1 for x in tuple())
+SHORTS_NUMS = tuple(x-1 for x in (2, 3, 4, 5, 14, 15, 16, 17, 18, 19, 27, 28,
+                                  29, 39, 40, 41, 43))
 SHORTS = qcm.make_channel_list(mdac, "Shorts", SHORTS_NUMS)
 
 # Cold Gate Nums
